@@ -10,8 +10,9 @@ class Book:
 
 class Member:
 
-    def __init__(self, name : str):
+    def __init__(self, name : str, member_id : int):
         self._name = name
+        self._member_id = member_id
         self._books = set() # Set of lent books
     
     def borrow_book(self, book : Book, library):
@@ -30,6 +31,10 @@ class Member:
     def get_borrowed_books(self):
         print(self._books)
 
+    def __str__(self):
+        return f'{self._name}, ID: {self._member_id}'
+
+
 class Library:
 
     def __init__(self):
@@ -43,8 +48,9 @@ class Library:
             self._books[book] = copies # Add one copy to library
 
     def register_member(self, name : str) -> Member:
-        member = Member(name)
+        member = Member(name, len(self._members)) # Note: Doesn't support removing members
         self._members.add(member)
+        print(f'Registered member: {member}')
         return member
     
     def book_available(self, book : Book) -> bool:
