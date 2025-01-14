@@ -1,0 +1,3 @@
+Library System
+
+Comprised of three classes: Library, Book and Member
